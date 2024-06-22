@@ -1,0 +1,64 @@
+@font-face {
+    font-family: 'Calculadora'; /* Name your font family */
+    src: url('../fonts/digital-7.ttf'); 
+}
+
+body {
+    background-image: url("../images/fondo.jpg");
+}
+
+.marco{
+    width: 500px;
+    height:525px;
+    border:3px solid;
+    border-color:rgb(0, 0, 0);
+    background-color: rgb(143, 147, 153);
+    border-radius:10%;
+    display:block;
+    margin:auto;
+}
+
+.botones{
+    position:block;
+    margin:auto;
+    padding-left:50.5px;
+}
+
+button{
+    width:75px;
+    height:75px;
+    margin:2px;
+    border-radius:10%;
+    position: block;
+}
+
+button:hover {
+    background-color: #04AA6D;
+    color: white;
+}
+
+.equal{
+    width:154px;
+}
+
+input{
+    font-size:75px;
+    font-family:'Calculadora';
+    width: 400px;
+    height:100px;
+    display:block;
+    margin:5px auto;
+    text-align:right;
+    background-color: black;
+    color:#04AA6D;
+}
+
+.circle {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    float: right;
+    margin: 10px;
+    background-color:red;
+    border:solid 1px black;
+}
