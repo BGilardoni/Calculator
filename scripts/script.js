@@ -11,7 +11,8 @@ let estado = false;
 let lista = document.getElementById("myList");
 //Para ir guardando los valores
 let memoria = [];
-
+//Valor textual del display
+let displayText = "";
 ////FUNCIONES EXTERNAS////
 //Agrega elementos a la lista
 function agregarItems(){
@@ -31,7 +32,8 @@ buttons.forEach(button => {
         if (button.innerText === '=') {
         try {
             //Muestra valor de la operacion en el display
-            display.value = eval(display.value);
+            displayText =display.value.replace("%","/100");
+            display.value = eval(displayText);
             //Vacia el ul de la lista de memoria
             lista.innerHTML ="";
             //Establece el limite de memoria
