@@ -1,3 +1,4 @@
+////VARIABLES////
 //Busca la pantalla de la calculadora por id
 const display = document.getElementById('display');
 //Guarda todos los botones
@@ -11,53 +12,73 @@ let lista = document.getElementById("myList");
 //Para ir guardando los valores
 let memoria = [];
 
+////FUNCIONES EXTERNAS////
+//Agrega elementos a la lista
+function agregarItems(){
+    memoria.forEach((item) => {
+        let li =
+            document.createElement("li");
+        li.innerText = item;
+        lista.appendChild(li);
+    })
+    };
+
+////MAIN////
 //Agrega funcionalidad a los botones
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     if (estado){
         if (button.innerText === '=') {
         try {
+            //Muestra valor de la operacion en el display
             display.value = eval(display.value);
-            memoria.push(display.value);
+            //Vacia el ul de la lista de memoria
             lista.innerHTML ="";
-            memoria.forEach((item) => {
-                let li =
-                    document.createElement("li");
-                li.innerText = item;
-                lista.appendChild(li);
-            });
+            //Establece el limite de memoria
+            if (memoria.length === 15){
+                memoria.shift();
+                memoria.push(display.value);
+            } else{
+                memoria.push(display.value);
+            }
+            //Agrega los elementos de la memoria a el ul como li
+            agregarItems();
         } catch (error) {
             display.value = 'Error';
         }
         } else if (button.innerText === 'CE') {
-        display.value = '';
+            display.value = '';
         } else if (button.innerText === 'ON') {
+            lista.innerHTML ="";
+            memoria.length = 0;
             display.value = '';
         } else if (button.innerText === 'M+') {
             display.value = '';
         } else if (button.innerText === 'MC') {
+            //Vacia la memoria y tambien el display
+            lista.innerHTML ="";
+            memoria.length = 0;
             display.value = '';
         } else if (button.innerText === 'MR') {
             display.value = '';
         } else if (button.innerText === 'OFF') {
+            //Vacia la memoria y tambien el display
             display.value = '';
+            lista.innerHTML ="";
+            memoria.length = 0;
+            //Cambia el estado a false para apagar la calculadora
             estado = false;
+            //Cambia el color de la luz que indica estado
             light.style.backgroundColor = 'red';
         } else {
         display.value += button.innerText;
         }
     }
-    if (button.innerText === 'ON'){
+    if (button.innerText === 'ON' && !estado){
+        //Cambia el estado a true para encender la calculadora
         estado = true;
+        //Cambia el color de la luz que indica estado
         light.style.backgroundColor = 'green';
     }
   });
-});
-
-//Agrega elementos a la lista
-memoria.forEach((item) => {
-    let li =
-        document.createElement("li");
-    li.innerText = item;
-    lista.appendChild(li);
 });
