@@ -13,6 +13,7 @@ let lista = document.getElementById("myList");
 let memoria = [];
 //Valor textual del display
 let displayText = "";
+
 ////FUNCIONES EXTERNAS////
 //Agrega elementos a la lista
 function agregarItems(){
@@ -55,14 +56,18 @@ buttons.forEach(button => {
             memoria.length = 0;
             display.value = '';
         } else if (button.innerText === 'M+') {
-            display.value = '';
+            if (memoria[memoria.length - 1]){
+            display.value += `+${memoria[memoria.length - 1]}`;
+        }
         } else if (button.innerText === 'MC') {
             //Vacia la memoria y tambien el display
             lista.innerHTML ="";
             memoria.length = 0;
             display.value = '';
-        } else if (button.innerText === 'MR') {
-            display.value = '';
+        } else if (button.innerText === 'M-') {
+            if (memoria[memoria.length - 1]){
+                display.value += `-${memoria[memoria.length - 1]}`;
+            }
         } else if (button.innerText === 'OFF') {
             //Vacia la memoria y tambien el display
             display.value = '';
