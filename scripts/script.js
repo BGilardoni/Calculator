@@ -25,7 +25,7 @@ function agregarItems(){
         li.innerText = item;
         lista.appendChild(li);
         li.addEventListener('click', () =>{
-            display.value += li.innerText;
+            display.value = li.innerText;
         })
     })
 };
@@ -34,7 +34,7 @@ function agregarItems(){
 ////MAIN////
 //Agrega funcionalidad a los botones
 buttons.forEach(button => {
-  button.addEventListener('click', () => {
+  button.addEventListener(['click'], () => {
     if (estado){
         if (button.innerText === '=') {
         try {
@@ -96,3 +96,41 @@ buttons.forEach(button => {
     }
   });
 });
+
+document.onkeydown = function (e) {
+    if (estado){
+        keyPressed = e.key;
+        switch(keyPressed){
+            case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': case '0': case '*': case '+': case '-': case'%': case '/': case '.':
+                display.value += keyPressed;
+            break;
+            case 'Backspace':
+                display.value = "";
+            break;
+            case 'Enter':
+                try {
+                    //Muestra valor de la operacion en el display
+                    displayText =display.value.replace("%","/100");
+                    display.value = eval(displayText);
+                    if(display.value != "undefined" && display.value != "function Error() { [native code] }" ){
+                    //Vacia el ul de la lista de memoria
+                    lista.innerHTML ="";
+                    //Establece el limite de memoria
+                    if (memoria.length === 15){
+                        memoria.shift();
+                        memoria.push(display.value);
+                    } else{
+                        memoria.push(display.value);
+                    }
+                    //Agrega los elementos de la memoria a el ul como li
+                    agregarItems();
+                }
+                } catch (error) {
+                    display.value = 'Error';
+                }
+            break;
+            default:
+            break;
+        }
+    }
+};
