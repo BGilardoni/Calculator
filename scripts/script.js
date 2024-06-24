@@ -3,6 +3,8 @@
 const display = document.getElementById('display');
 //Guarda todos los botones
 const buttons = document.querySelectorAll('button');
+//Guarda todos los li
+const list = document.querySelectorAll('li');
 //Guarda el indicador de encendido y apagado por id
 const light = document.getElementById('light');
 //Para saber si esta prendida o apagada
@@ -22,8 +24,12 @@ function agregarItems(){
             document.createElement("li");
         li.innerText = item;
         lista.appendChild(li);
+        li.addEventListener('click', () =>{
+            display.value += li.innerText;
+        })
     })
-    };
+};
+
 
 ////MAIN////
 //Agrega funcionalidad a los botones

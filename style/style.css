@@ -93,6 +93,12 @@ input{
     bottom:0;
 }
 
+.memoria li:hover{
+    background-color: green;
+    color: white;
+    cursor: pointer
+}
+
 .memoria h3{
     color:green;
     text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
