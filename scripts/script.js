@@ -35,6 +35,7 @@ buttons.forEach(button => {
             //Muestra valor de la operacion en el display
             displayText =display.value.replace("%","/100");
             display.value = eval(displayText);
+            if(display.value != "undefined" && display.value != "function Error() { [native code] }" ){
             //Vacia el ul de la lista de memoria
             lista.innerHTML ="";
             //Establece el limite de memoria
@@ -46,6 +47,7 @@ buttons.forEach(button => {
             }
             //Agrega los elementos de la memoria a el ul como li
             agregarItems();
+        }
         } catch (error) {
             display.value = 'Error';
         }
@@ -63,7 +65,6 @@ buttons.forEach(button => {
             //Vacia la memoria y tambien el display
             lista.innerHTML ="";
             memoria.length = 0;
-            display.value = '';
         } else if (button.innerText === 'M-') {
             if (memoria[memoria.length - 1]){
                 display.value += `-${memoria[memoria.length - 1]}`;
